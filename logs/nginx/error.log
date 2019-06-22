@@ -1,1 +1,0 @@
-2019/06/22 18:50:54 [warn] 1#1: "ssl_stapling" ignored, issuer certificate not found for certificate "/etc/ssl/wordpress.crt"
