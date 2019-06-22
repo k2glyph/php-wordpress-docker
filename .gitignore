@@ -16,4 +16,4 @@ public_html/license.txt
 public_html/readme.html
 public_html/sitemap.xml
 public_html/sitemap.xml.gz
-
+logs/**

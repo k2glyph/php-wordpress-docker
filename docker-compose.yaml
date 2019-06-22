@@ -15,8 +15,6 @@ services:
       - wordpress-db:/var/lib/mysql
   wordpress:
     image: wordpress:php7.1-fpm
-    ports:
-        - '8000:80'
     volumes:
         - ./public_html:/var/www/html
     environment:
