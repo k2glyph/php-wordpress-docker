@@ -17,6 +17,7 @@ services:
     image: wordpress:php7.1-fpm
     volumes:
         - ./public_html:/var/www/html
+        - ./php-fpm/:/etc/php-fpm/
     environment:
       WORDPRESS_DB_NAME: DevOps_Assignment
       WORDPRESS_DB_HOST: db

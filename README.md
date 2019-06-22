@@ -15,3 +15,12 @@ openssl dhparam 2048 -out ssl/wordpress.pem
 
 ## Finding issuer
 openssl s_client -connect wordpress-auzmor.com:443 -status | grep "issuer"
+
+
+## Why we have use TCP sockets instead of Unix Sockets?
+    Because the nginx and wordpress are not running on same container. We can scale either wordpress container or nginx container without having problem in communication. wordpress tcp is listening on 9000 which is only accessible from localhost and is good for security reason.
+
+## Why ondemand process management instead of static or dynamic?
+    The PHP-FPM process manager is determined after assessing the available server memory, traffic spikes, website pages, CPU usage. We have used ondemand process manager because It will increased the processor based on the traffic. This will help us to handle varying traffic in the website.
+
+    As static and dynamic are more memory intensive because they have minmum number of child process are running
