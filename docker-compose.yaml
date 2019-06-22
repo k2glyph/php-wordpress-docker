@@ -1,0 +1,45 @@
+version: "2.0"
+
+services:
+  db:
+    image: mysql:5.7
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: phpwordpress
+      MYSQL_DATABASE: DevOps_Assignment
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress@123
+    ports:
+    - "3306:3306"
+    volumes: 
+      - wordpress-db:/var/lib/mysql
+  wordpress:
+    image: wordpress:php7.1-fpm
+    ports:
+        - '8000:80'
+    volumes:
+        - ./public_html:/var/www/html
+    environment:
+      WORDPRESS_DB_NAME: DevOps_Assignment
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress@123
+    links:
+        - db
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    ports:
+        - '80:80'
+    volumes:
+        - ./nginx:/etc/nginx/conf.d
+        - ./logs/nginx:/var/log/nginx
+        - ./public_html:/var/www/html
+    links:
+        - wordpress
+    restart: always
+    
+volumes: 
+  wordpress-db:
+
